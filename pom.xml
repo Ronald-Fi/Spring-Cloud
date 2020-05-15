@@ -28,6 +28,7 @@
         <module>SpringBoot-Security</module>
         <module>SpringBoot-Shiro</module>
         <module>Start-SpringBoot</module>
+        <module>SpringBoot-Redis</module>
     </modules>
 
     <properties>
