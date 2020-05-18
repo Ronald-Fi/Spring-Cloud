@@ -5,39 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>Spring-Cloud</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>Base-Algorithm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Spring-Cloud</name>
-
-    <modules>
-        <module>Design-Patterns</module>
-        <module>Design-Principles</module>
-        <module>Distributed-And-High-Concurrency</module>
-        <module>Distributed-And-Microservices</module>
-        <module>Essential-tools</module>
-        <module>JUC</module>
-        <module>Security</module>
-        <module>Shiro</module>
-        <module>Soft-Skills-And-Cultivation</module>
-        <module>Source-Code-Analysis</module>
-        <module>SpringBoot-Security</module>
-        <module>SpringBoot-Shiro</module>
-        <module>Start-SpringBoot</module>
-        <module>SpringBoot-Redis</module>
-        <module>Base-Algorithm</module>
-    </modules>
-
+    <name>Base-Algorithm</name>
+    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,7 +39,6 @@
             </exclusions>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -68,5 +47,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
