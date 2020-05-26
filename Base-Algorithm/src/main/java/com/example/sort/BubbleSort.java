@@ -1,19 +1,17 @@
 package com.example.sort;
 
-/**
- * 选择排序
- */
-public class SelectionDemo {
+public class BubbleSort {
     public static void main(String[] args) {
         int[] array = {2, 4, 6, 8, 7, 1, 9, 3, 5};
-        for (int i = 0; i < array.length - 1; i++) {
-            int minPos = i;
-            for (int j = i + 1; j < array.length; j++) {
-                minPos = array[j] < array[minPos] ? j : minPos;
+        sort(array);
+        print(array);
+    }
+
+    public static void sort(int[] a) {
+        for (int i = a.length - 1; i > 0; i--) {
+            for (int j = 0; j < a.length - 1; j++) {
+                if (a[j] > a[j + 1]) swap(a, j, j + 1);
             }
-            swap(array, i, minPos);
-            System.out.println("经过第:" + i + "次循环之后的内容");
-            print(array);
         }
     }
 
