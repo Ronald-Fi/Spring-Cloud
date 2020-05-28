@@ -1,7 +1,7 @@
 package com.example.demo;
 
 public class ConcurrencyTest {
-    private static final long count = 10000l;
+    private static final long count = 10000L;
     public static void main(String[] args) throws InterruptedException {
         concurrency();
         serial();

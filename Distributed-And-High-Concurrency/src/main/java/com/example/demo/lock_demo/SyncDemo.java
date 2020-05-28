@@ -7,8 +7,9 @@ public class SyncDemo {
     }
 
     public void demo2() {
-        synchronized (this) {// 再次获得对象锁
+        synchronized (this) {// 不需要再次获得对象锁-而是增加重入次数
             System.out.println("demo2");
+            //释放时减少重入次数
         }
     }
 
