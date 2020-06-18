@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.lock_demo;
 
 public class DeadLockDemo {
     private static String A = "A";

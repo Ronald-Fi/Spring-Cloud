@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.juc.sync;
 
 public class SyncTest {
     Object lock;

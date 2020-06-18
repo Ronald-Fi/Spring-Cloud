@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.concurrentHashMap_demo;
 
 public class ConcurrencyTest {
     private static final long count = 10000L;
