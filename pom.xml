@@ -30,6 +30,7 @@
         <module>Start-SpringBoot</module>
         <module>SpringBoot-Redis</module>
         <module>Base-Algorithm</module>
+        <module>Kafka</module>
     </modules>
 
     <properties>

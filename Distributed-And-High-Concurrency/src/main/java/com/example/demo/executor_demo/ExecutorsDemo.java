@@ -12,9 +12,9 @@ public class ExecutorsDemo implements Runnable {
         /*for (int i = 0; i < 50; i++) {
             service.execute(new ExecutorsDemo());
         }*/
-        //关闭线程
+        //任务执行完毕关闭线程
         service.shutdown();
-        //当前线程立马终止  不建议使用
+        //当前线程立马终止 不建议使用(等同与Kill -9)
         service.shutdownNow();
         //回收核心线程
         ThreadPoolExecutor executor = (ThreadPoolExecutor) service;
@@ -24,12 +24,11 @@ public class ExecutorsDemo implements Runnable {
         //不带返回值  会抛出异常
         service.execute(new ExecutorsDemo());//预热之后可以直接执行任务实例
         //场景 线程执行完毕响应  不会抛异常
-//        service.submit();//带返回值的线程 Future.get获取
-
+        //service.submit();//带返回值的线程 Future.get获取
         executor.allowCoreThreadTimeOut(true);//核心线程回收策略
         //TODO 建议使用
         //ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor();
-        //运行中设置核心线程数
+        //运行中动态设置核心线程数和最大线程数
         //executor.setCorePoolSize();
         //executor.setMaximumPoolSize();
     }
@@ -40,6 +39,8 @@ public class ExecutorsDemo implements Runnable {
             Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            //发生异常停止虚拟机
+            System.exit(1);
         }
         System.out.println(Thread.currentThread().getName());
     }

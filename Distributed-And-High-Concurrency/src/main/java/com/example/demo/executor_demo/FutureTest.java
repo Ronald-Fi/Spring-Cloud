@@ -14,7 +14,7 @@ public class FutureTest implements Callable<String> {
         FutureTest futureTest = new FutureTest();
         FutureTask futureTask = new FutureTask<>(futureTest);
         new Thread(futureTask).start();
-        //获取当前线程返回结果 该方法是阻塞的  必须线程执行完毕才能获得结果
+        //获取当前线程返回结果、该方法是阻塞的、必须线程执行完毕才能获得结果
         System.out.println(futureTask.get());
         //等同
         ExecutorService executorService = Executors.newFixedThreadPool(3);
