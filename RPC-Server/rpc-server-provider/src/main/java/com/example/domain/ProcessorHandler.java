@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import org.springframework.util.StringUtils;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -64,6 +66,11 @@ public class ProcessorHandler implements Runnable {
             InvocationTargetException, IllegalAccessException {
         //反射调用
         String serviceName = request.getClassName();
+        String version = request.getVersion();
+        //增加版本号判断
+        if (!StringUtils.isEmpty(version)) {
+            serviceName += "-" + version;
+        }
         Object service = handlerMap.get(serviceName);
         if (null == service) {
             throw new RuntimeException("service not found:" + serviceName);

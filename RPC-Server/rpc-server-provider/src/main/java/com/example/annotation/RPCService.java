@@ -18,4 +18,9 @@ public @interface RPCService {
     //拿到服务的接口
     Class<?> value();
 
+    /**
+     * 版本号
+     */
+    String version() default "";
+
 }

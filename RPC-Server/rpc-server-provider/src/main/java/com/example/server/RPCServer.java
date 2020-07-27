@@ -6,6 +6,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -58,8 +59,16 @@ public class RPCServer implements ApplicationContextAware, InitializingBean {
         Map<String, Object> serviceBeanMap = applicationContext.getBeansWithAnnotation(RPCService.class);
         if (!serviceBeanMap.isEmpty()) {
             for (Object serviceBean : serviceBeanMap.values()) {
+                //拿到注解
                 RPCService rpcService = serviceBean.getClass().getAnnotation(RPCService.class);
+                //拿到接口类定义
                 String serviceName = rpcService.value().getName();
+                //版本号
+                String version = rpcService.version();
+                //接口拼接版本号
+                if (!StringUtils.isEmpty(version)) {
+                    serviceName += "-" + version;
+                }
                 handlerMap.put(serviceName, serviceBean);
             }
         }

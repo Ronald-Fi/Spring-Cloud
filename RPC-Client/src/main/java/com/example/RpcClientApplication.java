@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class RpcClientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RpcClientApplication.class, args);
+        //SpringApplication.run(RpcClientApplication.class, args);
         /*RPCProxyClient rpcProxyClient = new RPCProxyClient();
         IHelloService iHelloService = rpcProxyClient.clientProxy(IHelloService.class, "localhost", 8080);
         String result = iHelloService.sayHello("Ron");
