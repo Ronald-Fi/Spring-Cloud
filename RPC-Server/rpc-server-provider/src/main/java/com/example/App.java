@@ -1,7 +1,8 @@
 package com.example;
 
-import com.example.impl.HelloServiceImpl;
-import com.example.proxy.RPCProxyServer;
+import com.example.config.SpringConfig;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Hello world!
@@ -9,9 +10,11 @@ import com.example.proxy.RPCProxyServer;
 public class App {
     public static void main(String[] args) {
         //实例化
-        HelloServiceImpl service = new HelloServiceImpl();
+        /*HelloServiceImpl service = new HelloServiceImpl();
         RPCProxyServer proxyServer = new RPCProxyServer();
         //发布
-        proxyServer.publisher(service, 8080);
+        proxyServer.publisher(service, 8080);*/
+        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        //context.start();
     }
 }

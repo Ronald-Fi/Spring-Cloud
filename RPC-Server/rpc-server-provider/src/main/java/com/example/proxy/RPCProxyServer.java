@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 
 public class RPCProxyServer {
 
-    private static boolean IS_STATE = true;
+    /*private static boolean IS_STATE = true;
     ExecutorService es = Executors.newCachedThreadPool();
 
     public void publisher(Object service, int port) {
@@ -34,5 +34,5 @@ public class RPCProxyServer {
                 }
             }
         }
-    }
+    }*/
 }
