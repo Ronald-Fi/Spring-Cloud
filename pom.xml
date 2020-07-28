@@ -35,6 +35,7 @@
         <module>RPC-Client</module>
         <module>RPC-Server/rpc-server-api</module>
         <module>RPC-Server/rpc-server-provider</module>
+        <module>Netty</module>
     </modules>
 
     <properties>
