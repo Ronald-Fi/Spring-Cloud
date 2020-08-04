@@ -20,8 +20,9 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
     private List<String> classNames = new ArrayList<>();
 
     public RegistryHandler() {
-        //完成递归扫描
+        //完成递归扫描,正常的话应该是读配置文件
         scannerClass("com.example.rpc.provider");
+        //注册
         doRegister();
     }
 
@@ -30,16 +31,18 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
         Object result = new Object();
         InvokerProtocol request = (InvokerProtocol) msg;
 
-        //当客户端建立连接时，需要从自定义协议中获取信息，拿到具体的服务和实参
+        //当客户端建立连接时,需要从自定义协议中获取信息,拿到具体的服务和实参
         //使用反射调用
         if (registryMap.containsKey(request.getClassName())) {
             Object clazz = registryMap.get(request.getClassName());
             Method method = clazz.getClass().getMethod(request.getMethodName(), request.getParames());
             result = method.invoke(clazz, request.getValues());
         }
+        //通过远程调用Provider得到返回结果并回复给客户端
         ctx.write(result);
         ctx.flush();
         ctx.close();
+        System.out.println("服务端计算结果：" + result);
     }
 
     @Override
@@ -55,7 +58,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter {
         URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
         File dir = new File(url.getFile());
         for (File file : dir.listFiles()) {
-            //如果是一个文件夹，继续递归
+            //如果是一个文件夹,继续递归
             if (file.isDirectory()) {
                 scannerClass(packageName + "." + file.getName());
             } else {

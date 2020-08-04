@@ -30,7 +30,7 @@
         <module>Start-SpringBoot</module>
         <module>SpringBoot-Redis</module>
         <module>Base-Algorithm</module>
-        <module>Kafka</module>
+        <!--<module>Kafka</module>-->
         <module>RPC-Server</module>
         <module>RPC-Client</module>
         <module>RPC-Server/rpc-server-api</module>

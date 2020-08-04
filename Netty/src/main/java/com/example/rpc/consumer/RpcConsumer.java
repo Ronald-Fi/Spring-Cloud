@@ -8,6 +8,10 @@ import com.example.rpc.consumer.proxy.RpcProxy;
 public class RpcConsumer {
 
     public static void main(String[] args) {
+        //本地调用
+        /*IRpcHelloService service = new RpcHelloServiceImpl();
+        service.hello("Ron");
+        IRpcService iRpcService = new RpcServiceImpl();*/
         IRpcHelloService rpcHello = RpcProxy.create(IRpcHelloService.class);
         System.out.println(rpcHello.hello("Ron"));
 

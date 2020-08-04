@@ -28,6 +28,7 @@ public class RpcProxy {
         return result;
     }
 
+    //将本地调用通过代理的形式改为网络调用
     private static class MethodProxy implements InvocationHandler {
 
         private Class<?> clazz;
@@ -67,12 +68,14 @@ public class RpcProxy {
             msg.setValues(args);
             msg.setParames(method.getParameterTypes());
 
+            //发起网络请求
             final RpcProxyHandler consumerHandler = new RpcProxyHandler();
             EventLoopGroup group = new NioEventLoopGroup();
             try {
                 Bootstrap b = new Bootstrap();
                 b.group(group)
                         .channel(NioSocketChannel.class)
+                        //长链接
                         .option(ChannelOption.TCP_NODELAY, true)
                         .handler(new ChannelInitializer<SocketChannel>() {
                             @Override
@@ -98,14 +101,18 @@ public class RpcProxy {
                                 pipeline.addLast("handler", consumerHandler);
                             }
                         });
+                //连接服务器
                 ChannelFuture future = b.connect("localhost", 8080).sync();
+                //信息写入处理写出
                 future.channel().writeAndFlush(msg).sync();
                 future.channel().closeFuture().sync();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
+                //关闭线程池
                 group.shutdownGracefully();
             }
+            //返回结果
             return consumerHandler.getResponse();
         }
     }
