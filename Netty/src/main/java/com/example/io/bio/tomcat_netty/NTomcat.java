@@ -60,9 +60,11 @@ public class NTomcat {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             //Netty服务
+            //1、创建对象
             //ServerBootstrap,ServerSocketChannel
             ServerBootstrap server = new ServerBootstrap();
-            // 链路式编程
+            //链路式编程
+            //2、设置参数
             server.group(bossGroup, workerGroup)
                     // 主线程处理类,看到这样的写法,底层就是用反射
                     .channel(NioServerSocketChannel.class)
@@ -70,9 +72,11 @@ public class NTomcat {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         // 客户端初始化处理
                         protected void initChannel(SocketChannel client) throws Exception {
+                            //pipeline有序
                             // 无锁化串行编程
                             //Netty对HTTP协议的封装,顺序有要求
                             // HttpResponseEncoder 编码器
+                            //责任链模式、双向链表
                             client.pipeline().addLast(new HttpResponseEncoder());
                             // HttpRequestDecoder 解码器
                             client.pipeline().addLast(new HttpRequestDecoder());
@@ -85,7 +89,7 @@ public class NTomcat {
                     // 针对子线程的配置 保持长连接
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            // 启动服务器
+            //3、启动服务器
             ChannelFuture f = server.bind(port).sync();
             System.out.println("N Tomcat 已启动,监听的端口是：" + port);
             f.channel().closeFuture().sync();
