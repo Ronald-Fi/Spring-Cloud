@@ -1,10 +1,8 @@
 package com.example;
 
-import com.example.config.SpringConfig;
+import com.example.rest.config.SpringConfig;
 import com.example.proxy.RPCProxyClient;
 import com.example.service.IHelloService;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
